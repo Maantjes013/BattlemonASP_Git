@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewData["Title"] - ABC_Gereedschap_ASP</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/CSS.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="~/Images/DaanPikachu.png" height="30" width="30">&nbsp&nbsp<font color="grey">Battlemon</font>&nbsp&nbsp<img src="~/Images/DaanPikachu.png" height="30" width="30"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        @if (User.IsInRole("Admin"))
+                        {
+
+                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index"><font color="grey">Home</font></a></li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        <li><a asp-controller="Battlemon" asp-action="Index"><font color="grey">Battlemon</font></a></li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        <li><a asp-area="" asp-controller="Battle" asp-action="Battle"><font color="grey">Battle CPU</font></a></li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Logout"><font color="grey">Logout</font></a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index"><font color="grey">Home</font></a></li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login"><font color="grey">Login</font></a></li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Register"><font color="grey">Register</font></a></li>
+                    }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <partial name="_CookieConsentPartial" />
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; 2019 - ABC_Gereedschap_ASP</p>
+            </footer>
+        </div>
+
+        <environment include="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+        </environment>
+        <environment exclude="Development">
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+            </script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+            </script>
+            <script src="~/js/site.min.js" asp-append-version="true"></script>
+        </environment>
+
+        @RenderSection("Scripts", required: false)
+    </body>
+</html>
+
+
+
+

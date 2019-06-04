@@ -1,0 +1,44 @@
+﻿@model BattlemonASP.Models.ViewModels.AttackDetailViewModel
+@{
+    Layout = null;
+}
+
+<div class="col-md-6">
+    <h2>AttackPartial</h2>
+    <table class="table" style="font-size:30px">
+        <thead>
+            <tr>
+                <th>
+                    Attack 1:
+                </th>
+                <th>
+                    Attack 2:
+                </th>
+                <th>
+                    Attack 3:
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Attack 4:
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.attack1
+                </td>
+                <td>
+                    @Model.attack2
+                </td>
+                <td>
+                    @Model.attack3
+                </td>
+                <td>
+                    @Model.attack4
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

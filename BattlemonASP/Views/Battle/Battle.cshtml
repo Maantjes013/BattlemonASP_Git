@@ -1,0 +1,42 @@
+﻿@model BattlemonASP.Models.ViewModels.BattleDetailViewModel
+@{
+    ViewData["Title"] = "Battle";
+}
+
+<h2>Battle</h2>
+
+<div>
+    <h4>BattleDetailViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal"></dl>
+</div>
+
+<div>
+    @Model.OpponentBattlemon.Name
+    @Model.OpponentBattlemon.HealthPoints
+    <a asp-controller="Battle" asp-action="UserDamage" asp-route-id="">Attack</a>
+    @if (Model.OpponentBattlemon.Name == "LittleCat" || Model.OpponentBattlemon.Name == "Kens" || Model.OpponentBattlemon.Name == "Shysto")
+    {
+        <img src="~/images/@Model.OpponentBattlemon.Image" style=" top:100px; right:850px" height="200" width="350">
+    }
+    else
+    {
+        <img src="~/images/@Model.OpponentBattlemon.Image" style=" top:100px; right:850px" height="200" width="200">
+    }
+</div>
+
+<br>
+
+<div>
+    @Model.UserBattlemon.Name
+    @Model.UserBattlemon.HealthPoints
+    <a asp-controller="Battle" asp-action="OpponentDamage" asp-route-id="">Attack</a>
+    @if (Model.OpponentBattlemon.Name == "LittleCat" || Model.OpponentBattlemon.Name == "Kens" || Model.OpponentBattlemon.Name == "Shysto")
+    {
+        <img src="~/images/@Model.UserBattlemon.ImageBack" style=" top:100px; right:850px" height="200" width="350">
+    }
+    else
+    {
+        <img src="~/images/@Model.UserBattlemon.ImageBack" style=" top:100px; right:850px" height="200" width="200">
+    }
+</div>

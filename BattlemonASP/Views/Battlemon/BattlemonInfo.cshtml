@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Battlemon Info";
+}
+<div class="row">
+    <div class="col-md-6">
+
+        <p class="font-weight-bold"><font size="6">Battlemon Info</font></p>
+
+        @if (Model.Name == "LittleCat" || Model.Name == "Kens" || Model.Name == "Shysto")
+        {<div>
+                <div><img src="~/images/@Model.Image" style="position:absolute; top:100px; right:850px" height="200" width="350"></div>
+            </div>
+        }
+        else
+        {
+            <div>
+                <div><img src="~/images/@Model.Image" style="position:absolute; top:100px; right:1000px" height="200" width="200"></div>
+            </div>
+        }
+        <div>
+            <div>@Model.Name</div>
+        </div>
+        <br />
+        <div>
+            <div>@Model.Type</div>
+        </div>
+        <br />
+        <div>
+            <div>Attack stat: @Model.Attack</div>
+        </div>
+        <br />
+        <div>
+            <div>Defence stat: @Model.Defence</div>
+        </div>
+        <br />
+        <div>Speed stat: @Model.Speed</div>
+        <br />
+
+        <a onclick="ShowAttacks(@Model.BattlemonID)">Show attacks</a>
+    </div>
+    <div class="col-md-6">
+        <div id="changespace" />
+    </div>
+</div>
+@*<script type="text/javascript">
+    window.onload = function () {
+        ShowAttacks(BattlemonID = @Model.BattlemonID);
+    }
+</script>*@
+
+
+
+
+
+

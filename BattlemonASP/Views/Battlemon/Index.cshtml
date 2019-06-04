@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Battlemon";
+}
+<div class="row">
+    <div class="col-md-6">
+        @foreach (var mon in Model.BvmList)
+        {
+            <br />
+            @if (mon.Name == "LittleCat" || mon.Name == "Kens" || mon.Name == "Shysto")
+            {
+                <a asp-controller="Battlemon" asp-action="BattlemonInfo" asp-route-id="@mon.BattlemonID"><img src="~/images/@mon.Image" height="35" width="55"></a>
+            }
+            else
+            {
+                <a asp-controller="Battlemon" asp-action="BattlemonInfo" asp-route-id="@mon.BattlemonID"><img src="~/images/@mon.Image" height="40" width="40"></a>
+            }
+            <div><font size="4"><a asp-controller="Battlemon" asp-action="BattlemonInfo" asp-route-id="@mon.BattlemonID"><font color="black">@mon.Name</font></a></font></div>
+            if (User.IsInRole("Admin"))
+            {
+                <div><font size="4"><a asp-controller="Battlemon" asp-action="EditBattlemon" asp-route-id="@mon.BattlemonID">Edit Battlemon</a></font></div>
+            }
+
+            <a asp-controller="Opponent" asp-action="GetOpponentByID" asp-route-id="">kip</a>
+            <a onclick="ShowAttacks(@mon.BattlemonID)">Show attacks</a>
+
+        }
+    </div>
+    <div class="col-md-6">
+        <div id="testspace" />
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
