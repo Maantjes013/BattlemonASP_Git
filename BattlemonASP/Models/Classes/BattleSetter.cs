@@ -9,10 +9,11 @@ namespace BattlemonASP.Models.Classes
     public class BattleSetter
     {
         Battle battle = new Battle();
-        public Battle FillBattle(Battlemon userBattlemon, Battlemon opponentBattlemon)
+        public Battle FillBattle(Battlemon userBattlemon, Battlemon opponentBattlemon, Opponent opponent)
         {
             battle.UserBattlemon = userBattlemon;
             battle.OpponentBattlemon = opponentBattlemon;
+            battle.opponent = opponent;
 
             return battle;
         }

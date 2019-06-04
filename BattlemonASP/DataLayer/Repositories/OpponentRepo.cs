@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BattlemonASP.DataLayer.Repositories
 {
-    class OpponentRepo
+    public class OpponentRepo
     {
         IOpponentInterface context;
 

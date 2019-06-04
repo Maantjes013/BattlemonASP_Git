@@ -17,7 +17,8 @@ namespace BattlemonASP.Controllers
 {
     public class BattleController : Controller
     {
-        IBattlemonInterface context;
+        IBattlemonInterface battlemonContext;
+        IOpponentInterface opponentContext;
         BattlemonRepo battlemonRepo;
         OpponentRepo opponentRepo;
         BattleDetailViewModel vm = new BattleDetailViewModel();
@@ -32,14 +33,16 @@ namespace BattlemonASP.Controllers
 
         public BattleController()
         {
-            this.context = new BattlemonContext();
-            battlemonRepo = new BattlemonRepo(context);
+            this.battlemonContext = new BattlemonContext();
+            battlemonRepo = new BattlemonRepo(battlemonContext);
+            opponentRepo = new OpponentRepo(opponentContext);
         }
 
         public IActionResult Battle()
         {
             Battlemon userBattlemon = new Battlemon();
             Battlemon opponentBattlemon = new Battlemon();
+            Opponent opponent = new Opponent();
 
             if (HttpContext.Session.GetInt32("StartOfGame") == 0 || HttpContext.Session.GetInt32("StartOfGame") == null)
             {
@@ -51,17 +54,20 @@ namespace BattlemonASP.Controllers
                 int opponentID = Opponent.Next(1, 7);
                 HttpContext.Session.SetString("UserBattlemon", JsonConvert.SerializeObject(battlemonRepo.GetBattlemonByID(userBattlemonID)));
                 HttpContext.Session.SetString("OpponentBattlemon", JsonConvert.SerializeObject(battlemonRepo.GetBattlemonByID(opponentBattlemonID)));
-                //HttpContext.Session.SetString("Opponent", JsonConvert.SerializeObject(opponentRepo.GetOpponentByID(opponentID)));
+                HttpContext.Session.SetString("Opponent", JsonConvert.SerializeObject(opponentRepo.GetOpponentByID(opponentID)));
 
                 HttpContext.Session.SetInt32("StartOfGame", 1);
             }
 
             userBattlemon = JsonConvert.DeserializeObject<Battlemon>(HttpContext.Session.GetString("UserBattlemon"));
             opponentBattlemon = JsonConvert.DeserializeObject<Battlemon>(HttpContext.Session.GetString("OpponentBattlemon"));
-            Battle battle = battleSetter.FillBattle(userBattlemon, opponentBattlemon);
+            opponent = JsonConvert.DeserializeObject<Opponent>(HttpContext.Session.GetString("Opponent"));
+
+            Battle battle = battleSetter.FillBattle(userBattlemon, opponentBattlemon, opponent);
             vm = bvmc.ViewModelFromBattle(battle);
             HttpContext.Session.SetString("UserBattlemon", JsonConvert.SerializeObject(battle.UserBattlemon));
             HttpContext.Session.SetString("OpponentBattlemon", JsonConvert.SerializeObject(battle.OpponentBattlemon));
+            HttpContext.Session.SetString("Opponent", JsonConvert.SerializeObject(battle.opponent));
 
             if (HttpContext.Session.GetInt32("UserTurn") == 1)
             {

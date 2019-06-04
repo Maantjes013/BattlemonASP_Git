@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BattlemonASP.DataLayer.Interfaces
 {
-    interface IOpponentInterface
+    public interface IOpponentInterface
     {
         Opponent GetOpponentByID(int opponentID);
     }

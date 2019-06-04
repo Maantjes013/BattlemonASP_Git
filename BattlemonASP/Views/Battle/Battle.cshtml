@@ -12,6 +12,10 @@
 </div>
 
 <div>
+    @Model.opponent.trainerClass @Model.opponent.Name
+</div>
+
+<div>
     @Model.OpponentBattlemon.Name
     @Model.OpponentBattlemon.HealthPoints
     <a asp-controller="Battle" asp-action="UserDamage" asp-route-id="">Attack</a>

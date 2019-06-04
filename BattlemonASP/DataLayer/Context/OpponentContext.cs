@@ -10,7 +10,7 @@ using BattlemonASP.DataLayer.Interfaces;
 
 namespace BattlemonASP.DataLayer.Context
 {
-    class OpponentContext : IOpponentInterface
+    public class OpponentContext : IOpponentInterface
     {
         public OpponentContext()
         {
